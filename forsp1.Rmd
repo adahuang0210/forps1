@@ -46,3 +46,20 @@ transform_data <- function(data) {
 }
 transform_data
 ```
+
+## now i'm going to add second function that does a different transformation, but also takes a single argument `data` (a dataset) and returns a transformed dataset
+in this part, i add this function. This function scales (normalizes) each numeric column in the dataset so that values range between 0 and 1.
+
+```{r}
+# Define a scaling function
+scale_data <- function(data) {
+  # Check for numeric columns and scale them
+  data[sapply(data, is.numeric)] <- lapply(data[sapply(data, is.numeric)], function(x) (x - min(x)) / (max(x) - min(x)))
+  return(data)
+}
+
+# Test the function on a dataset like mtcars
+scaled_mtcars <- scale_data(mtcars)
+print(scaled_mtcars)
+```
+
