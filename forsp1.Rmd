@@ -52,11 +52,15 @@ in this part, i add this function. This function scales (normalizes) each numeri
 
 ```{r}
 # Define a scaling function
-scale_data <- function(data) {
+scale_data <- function(data_new) {
   # Check for numeric columns and scale them
-  data[sapply(data, is.numeric)] <- lapply(data[sapply(data, is.numeric)], function(x) (x - min(x)) / (max(x) - min(x)))
-  return(data)
+  data_new[sapply(data_new, is.numeric)] <- lapply(data_new[sapply(data_new, is.numeric)], function(x) (x - min(x)) / (max(x) - min(x)))
+  return(data_new)
 }
+
+# Test the function on a dataset like mtcars
+scaled_mtcars <- scale_data(mtcars)
+print(scaled_mtcars)
 
 # Test the function on a dataset like mtcars
 scaled_mtcars <- scale_data(mtcars)
